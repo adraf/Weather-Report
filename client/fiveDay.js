@@ -9,7 +9,7 @@ function getLocation() {
   // pull location name from id in weather.js
   const locationName = document.querySelector("#locationName").className;
   /// run api to get the lat and long measurements from Geocoding location name
-  const urlLocation = `http://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${apiKey}`
+  const urlLocation = `https://api.openweathermap.org/geo/1.0/direct?q=${locationName}&limit=1&appid=${apiKey}`
   fetch(urlLocation).then(waitForResponse).then(locateData);
 }
 
@@ -33,7 +33,7 @@ function showFiveDays(data) {
     const temp = Math.trunc(data.list[i].main.temp);
     // const condition = data.list[i].weather[0].main;
     const weatherIconGet = data.list[i].weather[0].icon;
-    const weatherIcon = `http://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
+    const weatherIcon = `https://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
     // help from Coder Rocket Fuel and W3 Schools
     // Had started with the provided API data but decided to use the epoch number to have more formatiing ability on the time/date 
     const dtTest = data.list[i].dt;

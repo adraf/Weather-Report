@@ -20,7 +20,7 @@ function displayCurrentWeather(responseData) {
   const minTemp = Math.trunc(responseData.main.temp_min);
   const maxTemp = Math.trunc(responseData.main.temp_max);
   const weatherIconGet = responseData.weather[0].icon;
-  const weatherIcon = `http://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
+  const weatherIcon = `https://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
   // similar method as fiveDay.js file to get the result and format it
   const getSunrise = responseData.sys.sunrise*1000;
     const dateObjectRise = new Date(getSunrise)
