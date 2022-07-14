@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  background: rgb(224, 255, 251);
+  background: linear-gradient(
+    0deg,
+    rgba(224, 255, 251, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+  background-attachment: fixed;
+  height: 100vh;
+  font-family: "Quicksand", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  background-color: deepskyblue;
+  color: ghostwhite;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px solid rgb(122, 213, 255);
+  width: 80vw;
+  max-width: 500px;
+  margin: 30px auto;
+  font-weight: 600;
+  font-size: 50px;
+}
+
+#output {
+  display: flex;
+  color: rgb(49, 85, 126);
+  font-size: 20px;
+  align-items: center;
+  margin: 0 auto;
+  width: 70vw;
+  max-width: 900px;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 40px 0;
+}
+
+#mainDashboard, #sectionOne, #sectionTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gridDashboard, #sectionTwo section, #sectionOne section {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+#sectionTwo section, #sectionOne section {
+  width: 100%;
+  justify-content: space-around;
+  padding: 15px;
+  align-items: end;
+}
+
+#sunriseImg, #sunsetImg, #maxTempImg, #minTempImg, #dayImg, #nightImg {
+  width: 80px;
+  height: 80px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: invert(32%) sepia(14%) saturate(1873%) hue-rotate(172deg) brightness(91%) contrast(90%);
+}
+
+#sunriseImg {background-image: url(./public/sunrise.png);}
+#sunsetImg {background-image: url(./public/sunset.png);}
+#maxTempImg {background-image: url(./public/tempmax.png);}
+#minTempImg {background-image: url(./public/tempmin.png);}
+#dayImg {background-image: url(./public/day.png);}
+#nightImg {background-image: url(./public/night.png);}
+
+#dayImg, #nightImg {
+  width: 30px;
+  height: 30px;
+}
+
+#tempDayInfo {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50%;
+}
+
+form {
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+
+input {
+  padding: 20px;
+  border: none;
+  border-radius: 20px;
+  margin: 5px;
+  font-size: 18px;
+}
+
+input[type="submit"] {
+  background-color: rgba(148, 187, 233, 1);
+  color: white;
+}
+
+input::placeholder {
+  color: rgba(148, 187, 233, 1);
+}
+
+#aside {
+  display: flex;
+  width: 15vw;
+  /* margin: 0 auto; */
+  justify-content: center;
+}
+
+#aside img {
+  height: 100px;
+  width: auto;
+}
+
+#loadingScreen {
+  background-image: url("./public/loading-buffering.gif");
+  height: 20vh;
+  width: 20vh;
+  margin: 20px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#fiveDayForecast {
+  margin-top: 50px;
+  display: flex;
+  overflow: auto;
+  padding-bottom: 25px;
+}
+
+.weatherAheadSections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  max-width: 400px;
+  margin: 0 22px;
+  color: rgb(49, 85, 126);
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px solid white;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+ #output {
+  flex-direction: column;
+  font-size: 16px;
+  padding: 0;
+  width: 90vw;
+ }
+
+ #mainDashboard {
+  margin-bottom: 20px;
+ }
+
+ #sunriseImg, #sunsetImg, #maxTempImg, #minTempImg {
+  width: 60px;
+  height: 60px;
+ }
+
+}
