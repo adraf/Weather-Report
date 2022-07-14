@@ -2,9 +2,9 @@
   "name": "weather-report",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
   "scripts": {
     "start": "parcel client/index.html",
+    "build": "parcel build client/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
