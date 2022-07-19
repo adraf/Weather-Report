@@ -34,12 +34,17 @@ function showFiveDays(data) {
     // const condition = data.list[i].weather[0].main;
     const weatherIconGet = data.list[i].weather[0].icon;
     const weatherIcon = `https://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
-    // help from Coder Rocket Fuel and W3 Schools
+    // Help from Coder Rocket Fuel and W3 Schools
     // Had started with the provided API data but decided to use the epoch number to have more formatiing ability on the time/date 
+    // Added in a similar getTimeZoneOffset method as used in weather.js to show day/night correctly
+    const timezone = data.city.timezone;
     const dtTest = data.list[i].dt;
-    const milliseconds = dtTest*1000
+    const milliseconds = (dtTest+timezone)*1000
     const dateObject = new Date(milliseconds)
-    const readableDate = dateObject.toLocaleString("en-GB", {
+    const getLocalTime = (dateObject.getTimezoneOffset()*60)*1000;
+    const timeWithZone = milliseconds+getLocalTime;
+    const timeResult = new Date(timeWithZone);
+    const readableDate = timeResult.toLocaleString("en-GB", {
       weekday: "long",
       year: "2-digit",
       month: "short",

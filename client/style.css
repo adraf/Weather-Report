@@ -98,6 +98,8 @@ input {
   border-radius: 20px;
   margin: 5px;
   font-size: 18px;
+  /* Remove iOS button styling */
+  -webkit-appearance: none;
 }
 
 input[type="submit"] {

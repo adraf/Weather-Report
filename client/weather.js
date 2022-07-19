@@ -21,18 +21,29 @@ function displayCurrentWeather(responseData) {
   const maxTemp = Math.trunc(responseData.main.temp_max);
   const weatherIconGet = responseData.weather[0].icon;
   const weatherIcon = `https://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
+  // Adjust for time zones
+  // Get getTimeZoneOffset for location, take the number difference and times it by 60 for seconds, then by 1000 for epoch
   // similar method as fiveDay.js file to get the result and format it
-  const getSunrise = responseData.sys.sunrise*1000;
-    const dateObjectRise = new Date(getSunrise)
-    const sunriseResult = dateObjectRise.toLocaleString("en-GB", {
+  const timezone = responseData.timezone;
+  const getSunrise = (responseData.sys.sunrise+timezone)*1000;
+  const dateObjectSunrise = new Date(getSunrise);
+  const getLocalTimeZone = (dateObjectSunrise.getTimezoneOffset()*60)*1000; //
+  const sunMinusZone = getSunrise+getLocalTimeZone;
+  const timeRiseResult = new Date(sunMinusZone);
+    const sunriseResult = timeRiseResult.toLocaleString("en-GB", {
       hour12: "true",
-      hour: "numeric"
+      hour: "numeric",
+      minute: "numeric"
     })
-  const getSunset = responseData.sys.sunset*1000;
-  const dateObjectSet = new Date(getSunset)
-  const sunsetResult = dateObjectSet.toLocaleString("en-GB", {
+  const getSunset = (responseData.sys.sunset+timezone)*1000;
+  const dateObjectSunset = new Date(getSunset);
+  const getLocalTimeZoneSet = (dateObjectSunset.getTimezoneOffset()*60)*1000; //
+  const sunMinusZoneSet = getSunset+getLocalTimeZoneSet;
+  const timeSetResult = new Date(sunMinusZoneSet)
+  const sunsetResult = timeSetResult.toLocaleString("en-GB", {
     hour12: "true",
-    hour: "numeric"
+    hour: "numeric",
+    minute: "numeric"
   })
   const html = `
     <div id="mainDashboard">
