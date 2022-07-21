@@ -118,6 +118,12 @@ input::placeholder {
   justify-content: center;
 }
 
+#currentTemp span {
+  padding: 12px 15px; 
+  border-radius: 10px;
+  background-color: black;
+}
+
 #aside img {
   height: 100px;
   width: auto;
@@ -138,6 +144,8 @@ input::placeholder {
   display: flex;
   overflow: auto;
   padding-bottom: 25px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 20px;
 }
 
 .weatherAheadSections {
@@ -151,6 +159,7 @@ input::placeholder {
   padding: 20px;
   border-radius: 20px;
   border: 5px solid white;
+  scroll-snap-align: start;  
 }
 
 
@@ -170,6 +179,16 @@ input::placeholder {
  #sunriseImg, #sunsetImg, #maxTempImg, #minTempImg {
   width: 60px;
   height: 60px;
+ }
+
+/* center 5 day forecast sections for mobile */
+ #fiveDayForecast {
+  scroll-padding-left: 0;
+ }
+
+ .weatherAheadSections {
+  width: 90vw;
+  scroll-snap-align: center;
  }
 
 }

@@ -17,8 +17,29 @@ const apiKey = process.env.API_KEY;
 function displayCurrentWeather(responseData) {
   const locationName = responseData.name;
   const currentTemp = Math.trunc(responseData.main.temp);
+  const currentTempColor = (currentTemp <= 0 ) ? `<p id="currentTemp"><span style="filter: invert(14%) sepia(48%) saturate(6944%) hue-rotate(238deg) brightness(83%) contrast(117%);">${currentTemp}&#8451;</span></p>` 
+  : (currentTemp > 0 && currentTemp <= 10) ? `<p id="currentTemp"><span style="filter: invert(70%) sepia(45%) saturate(656%) hue-rotate(141deg) brightness(85%) contrast(84%);">${currentTemp}&#8451;</span></p>` 
+  : (currentTemp >10 && currentTemp <= 20) ? `<p id="currentTemp"><span style="filter: invert(85%) sepia(63%) saturate(372%) hue-rotate(10deg) brightness(104%) contrast(96%);">${currentTemp}&#8451;</span></p>`
+  : (currentTemp > 20 && currentTemp <= 30) ? `<p id="currentTemp"><span style="filter: invert(90%) sepia(13%) saturate(2066%) hue-rotate(341deg) brightness(103%) contrast(104%);">${currentTemp}&#8451;</span></p>`
+  : (currentTemp > 30 && currentTemp <= 40) ? `<p id="currentTemp"><span style="filter: invert(52%) sepia(33%) saturate(1292%) hue-rotate(324deg) brightness(99%) contrast(90%);">${currentTemp}&#8451;</span></p>`
+  :(currentTemp > 40 && currentTemp <= 50) ? `<p id="currentTemp"><span style="filter: invert(12%) sepia(98%) saturate(3680%) hue-rotate(356deg) brightness(94%) contrast(100%);">${currentTemp}&#8451;</span></p>`
+  : "";
   const minTemp = Math.trunc(responseData.main.temp_min);
+  const minTempColor = (minTemp <= 0 ) ? `<div id="minTempImg" <span style="filter: invert(14%) sepia(48%) saturate(6944%) hue-rotate(238deg) brightness(83%) contrast(117%);"></span></div>`
+  : (minTemp > 0 && minTemp <= 10) ? `<div id="minTempImg" <span style="filter: invert(70%) sepia(45%) saturate(656%) hue-rotate(141deg) brightness(85%) contrast(84%);"></span></div>` 
+  : (minTemp >10 && minTemp <= 20) ? `<div id="minTempImg" <span style="filter: invert(85%) sepia(63%) saturate(372%) hue-rotate(10deg) brightness(104%) contrast(96%);"></span></div>`
+  : (minTemp > 20 && minTemp <= 30) ? `<div id="minTempImg" <span style="filter: invert(90%) sepia(13%) saturate(2066%) hue-rotate(341deg) brightness(103%) contrast(104%);"></span></div>`
+  : (minTemp > 30 && minTemp <= 40) ? `<div id="minTempImg" <span style="filter: invert(52%) sepia(33%) saturate(1292%) hue-rotate(324deg) brightness(99%) contrast(90%);"></span></div>`
+  :(minTemp > 40 && minTemp <= 50) ? `<div id="minTempImg" <span style="filter: invert(12%) sepia(98%) saturate(3680%) hue-rotate(356deg) brightness(94%) contrast(100%);"></span></div>`
+  : "";
   const maxTemp = Math.trunc(responseData.main.temp_max);
+  const maxTempColor = (maxTemp <= 0 ) ? `<div id="maxTempImg" <span style="filter: invert(14%) sepia(48%) saturate(6944%) hue-rotate(238deg) brightness(83%) contrast(117%);"></span></div>`
+  : (maxTemp > 0 && maxTemp <= 10) ? `<div id="maxTempImg" <span style="filter: invert(70%) sepia(45%) saturate(656%) hue-rotate(141deg) brightness(85%) contrast(84%);"></span></div>` 
+  : (maxTemp >10 && maxTemp <= 20) ? `<div id="maxTempImg" <span style="filter: invert(85%) sepia(63%) saturate(372%) hue-rotate(10deg) brightness(104%) contrast(96%);"></span></div>`
+  : (maxTemp > 20 && maxTemp <= 30) ? `<div id="maxTempImg" <span style="filter: invert(90%) sepia(13%) saturate(2066%) hue-rotate(341deg) brightness(103%) contrast(104%);"></span></div>`
+  : (maxTemp > 30 && maxTemp <= 40) ? `<div id="maxTempImg" <span style="filter: invert(52%) sepia(33%) saturate(1292%) hue-rotate(324deg) brightness(99%) contrast(90%);"></span></div>`
+  :(maxTemp > 40 && maxTemp <= 50) ? `<div id="maxTempImg" <span style="filter: invert(12%) sepia(98%) saturate(3680%) hue-rotate(356deg) brightness(94%) contrast(100%);"></span></div>`
+  : "";
   const weatherIconGet = responseData.weather[0].icon;
   const weatherIcon = `https://openweathermap.org/img/wn/${weatherIconGet}@2x.png`
   // Adjust for time zones
@@ -51,16 +72,16 @@ function displayCurrentWeather(responseData) {
       <div id="aside">
         <img src="${weatherIcon}">
       </div>
-      <p>${currentTemp}&#8451;</p>
+      ${currentTempColor}
     </div>
     <div id="gridDashboard">
       <div id="sectionOne">
         <section>
-          <div id="maxTempImg"></div>
+          ${maxTempColor}
           <p>${maxTemp}&#8451;</p>
         </section>
         <section>
-          <div id="minTempImg"></div>
+          ${minTempColor}
           <p>${minTemp}&#8451</p>
         </section>
       </div>
@@ -111,6 +132,16 @@ function onFormSubmit(event) {
   const weatherLocation = input.value.trim() === "" ? "London" : input.value;
   fetchCurrentWeather(weatherLocation);
 }
+
+form.addEventListener("submit", snapToStart)
+function snapToStart() {
+  const fiveDaySection = document.querySelector("#fiveDayForecast");
+  // find width of user window
+  const fullWidth = window.innerWidth;
+  // set five day section back to start on form submit
+  fiveDaySection.scrollLeft -=fullWidth*10;
+}
+
 // sets a default location
 fetchCurrentWeather();
 // uses user input location
