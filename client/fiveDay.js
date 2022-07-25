@@ -51,7 +51,8 @@ function showFiveDays(data) {
       day: "numeric",
       hour12: "true",
       hour: "numeric"
-    })
+      // to fix seeing 0 am, and 0 pm
+    }).replace(' 0 am', ' 12 am').replace(' 0 pm', ' 12 pm');
     const dayNight = data.list[i].sys.pod;
     // selects correct symbol for time of the day
     const dayNightResult = dayNight == "d" ? "dayImg" : "nightImg";
@@ -59,7 +60,7 @@ function showFiveDays(data) {
     const dayNightColor = dayNightResult == "nightImg" ? "rgb(90, 175, 215)" : "rgb(122, 213, 255)"
     const html = `
       <div style="background-color: ${dayNightColor};" class="weatherAheadSections">
-        <p>${readableDate}</p>
+        <p id="fiveDayDateString">${readableDate}</p>
         <div id="aside">
           <img src="${weatherIcon}">
         </div>
