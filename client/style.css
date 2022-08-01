@@ -10,21 +10,19 @@ body {
   );
   background-attachment: fixed;
   height: 100vh;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 h1 {
   text-align: center;
-  background-color: deepskyblue;
   color: ghostwhite;
   padding: 20px;
-  border-radius: 20px;
-  border: 5px solid rgb(122, 213, 255);
   width: 80vw;
   max-width: 500px;
   margin: 30px auto;
-  font-weight: 600;
-  font-size: 50px;
+  font-weight: 500;
+  font-size: 55px;
+  text-transform: uppercase;
 }
 
 #output {
@@ -98,6 +96,7 @@ h1 {
 form {
   text-align: center;
   margin: 40px 0 20px 0;
+  background: none;
 }
 
 input {
@@ -108,6 +107,11 @@ input {
   font-size: 18px;
   /* Remove iOS button styling */
   -webkit-appearance: none;
+}
+
+input[type="text"] {
+  font-family: "Jost", sans-serif;
+  font-weight: 200;
 }
 
 input[type="submit"] {
@@ -122,7 +126,6 @@ input::placeholder {
 #aside {
   display: flex;
   width: 15vw;
-  /* margin: 0 auto; */
   justify-content: center;
 }
 
@@ -158,13 +161,45 @@ input::placeholder {
 }
 
 #loadingScreen {
-  background-image: url("./public/loading-buffering.gif");
+/* background image randomly generated in js */
   height: 20vh;
   width: 20vh;
   margin: 20px auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  animation:1s rotate infinite linear; 
+}
+
+/* animation for loading image */
+@keyframes rotate{
+  100%{ transform:rotate(1turn) } 
+}
+
+#fiveDayBtnList{
+  list-style-type: none;
+  margin: 15px auto 0 auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 70vw;
+  max-width: 550px;
+}
+
+#fiveDayBtnList li {
+  /* padding: 35px 40px; */
+  /* margin: 0 10px; */
+  background-color: rgb(49, 85, 126);
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+
+  text-align: center;
+  font-size: 15px;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
 }
 
 #fiveDayForecast {
@@ -194,6 +229,18 @@ input::placeholder {
   white-space: normal; 
 }
 
+#errorMsgDiv {
+  color: #31557e;
+  width: 70vw;
+  max-width: 900px;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 auto;
+  padding: 40px 0;
+  font-size: 20px;
+  display: flex;
+}
+
 @media only screen and (max-width: 600px) {
 
  #output {
@@ -220,6 +267,15 @@ input::placeholder {
  .weatherAheadSections {
   width: 90vw;
   scroll-snap-align: center;
+ }
+
+ #fiveDayBtnList{
+  width: 90vw;
+  justify-content: space-around;
+ }
+
+ #fiveDayBtnList li {
+  margin: 12px;
  }
 
 }

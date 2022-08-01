@@ -6,7 +6,6 @@ const url = "https://api.openweathermap.org/data/2.5/weather";
 const outputDiv = document.querySelector("#output");
 const apiKey = process.env.API_KEY;
 
-
 // Required Parameters
 // API Key ("appid") 
 // Use geocoding ("q") - City Name
@@ -19,7 +18,7 @@ function displayCurrentWeather(responseData) {
   const currentTemp = Math.trunc(responseData.main.temp);
    const currentTempColor = (currentTemp <= 0 ) ? `id="currentTempBackground" style="filter: invert(14%) sepia(48%) saturate(6944%) hue-rotate(238deg) brightness(83%) contrast(117%);"` 
   : (currentTemp > 0 && currentTemp <= 10) ? `id="currentTempBackground" style="filter: invert(70%) sepia(45%) saturate(656%) hue-rotate(141deg) brightness(85%) contrast(84%);"` 
-  : (currentTemp >10 && currentTemp <= 20) ? `id="currentTempBackground" style="filter: invert(85%) sepia(63%) saturate(372%) hue-rotate(10deg) brightness(104%) contrast(96%);"`
+  : (currentTemp >10 && currentTemp <= 20) ? `id="currentTempBackground" style="filter: invert(86%) sepia(41%) saturate(284%) hue-rotate(352deg) brightness(106%) contrast(104%);"`
   : (currentTemp > 20 && currentTemp <= 30) ? `id="currentTempBackground" style="filter: invert(90%) sepia(13%) saturate(2066%) hue-rotate(341deg) brightness(103%) contrast(104%);"`
   : (currentTemp > 30 && currentTemp <= 40) ? `id="currentTempBackground" style="filter: invert(52%) sepia(33%) saturate(1292%) hue-rotate(324deg) brightness(99%) contrast(90%);"`
   :(currentTemp > 40 && currentTemp <= 50) ? `id="currentTempBackground" style="filter: invert(12%) sepia(98%) saturate(3680%) hue-rotate(356deg) brightness(94%) contrast(100%);"`
@@ -27,7 +26,7 @@ function displayCurrentWeather(responseData) {
   const minTemp = Math.trunc(responseData.main.temp_min);
   const minTempColor = (minTemp <= 0 ) ? `<div id="minTempImg" <span style="filter: invert(14%) sepia(48%) saturate(6944%) hue-rotate(238deg) brightness(83%) contrast(117%);"></span></div>`
   : (minTemp > 0 && minTemp <= 10) ? `<div id="minTempImg" <span style="filter: invert(70%) sepia(45%) saturate(656%) hue-rotate(141deg) brightness(85%) contrast(84%);"></span></div>` 
-  : (minTemp >10 && minTemp <= 20) ? `<div id="minTempImg" <span style="filter: invert(85%) sepia(63%) saturate(372%) hue-rotate(10deg) brightness(104%) contrast(96%);"></span></div>`
+  : (minTemp >10 && minTemp <= 20) ? `<div id="minTempImg" <span style="filter: invert(86%) sepia(41%) saturate(284%) hue-rotate(352deg) brightness(106%) contrast(104%);"></span></div>`
   : (minTemp > 20 && minTemp <= 30) ? `<div id="minTempImg" <span style="filter: invert(90%) sepia(13%) saturate(2066%) hue-rotate(341deg) brightness(103%) contrast(104%);"></span></div>`
   : (minTemp > 30 && minTemp <= 40) ? `<div id="minTempImg" <span style="filter: invert(52%) sepia(33%) saturate(1292%) hue-rotate(324deg) brightness(99%) contrast(90%);"></span></div>`
   :(minTemp > 40 && minTemp <= 50) ? `<div id="minTempImg" <span style="filter: invert(12%) sepia(98%) saturate(3680%) hue-rotate(356deg) brightness(94%) contrast(100%);"></span></div>`
@@ -35,7 +34,7 @@ function displayCurrentWeather(responseData) {
   const maxTemp = Math.trunc(responseData.main.temp_max);
   const maxTempColor = (maxTemp <= 0 ) ? `<div id="maxTempImg" <span style="filter: invert(14%) sepia(48%) saturate(6944%) hue-rotate(238deg) brightness(83%) contrast(117%);"></span></div>`
   : (maxTemp > 0 && maxTemp <= 10) ? `<div id="maxTempImg" <span style="filter: invert(70%) sepia(45%) saturate(656%) hue-rotate(141deg) brightness(85%) contrast(84%);"></span></div>` 
-  : (maxTemp >10 && maxTemp <= 20) ? `<div id="maxTempImg" <span style="filter: invert(85%) sepia(63%) saturate(372%) hue-rotate(10deg) brightness(104%) contrast(96%);"></span></div>`
+  : (maxTemp >10 && maxTemp <= 20) ? `<div id="maxTempImg" <span style="filter: invert(86%) sepia(41%) saturate(284%) hue-rotate(352deg) brightness(106%) contrast(104%);"></span></div>`
   : (maxTemp > 20 && maxTemp <= 30) ? `<div id="maxTempImg" <span style="filter: invert(90%) sepia(13%) saturate(2066%) hue-rotate(341deg) brightness(103%) contrast(104%);"></span></div>`
   : (maxTemp > 30 && maxTemp <= 40) ? `<div id="maxTempImg" <span style="filter: invert(52%) sepia(33%) saturate(1292%) hue-rotate(324deg) brightness(99%) contrast(90%);"></span></div>`
   :(maxTemp > 40 && maxTemp <= 50) ? `<div id="maxTempImg" <span style="filter: invert(12%) sepia(98%) saturate(3680%) hue-rotate(356deg) brightness(94%) contrast(100%);"></span></div>`
@@ -110,6 +109,20 @@ function waitForResponse(res) {
 
 function fetchCurrentWeather(weatherLocation = "London") {
   outputDiv.innerHTML = `<div id="loadingScreen"></div>`;
+  // generate random loading image
+  const weatherImages = [
+    'url("https://openweathermap.org/img/wn/02d@2x.png")',
+    'url("https://openweathermap.org/img/wn/09d@2x.png")',
+    'url("https://openweathermap.org/img/wn/10d@2x.png")',
+    'url("https://openweathermap.org/img/wn/11d@2x.png")',
+  ];
+  const pic = document.querySelector("#loadingScreen");
+  function showLoadingImg() {
+    const picMath = Math.floor(Math.random() * weatherImages.length);
+    const randomLoadImg = weatherImages[picMath];
+    pic.style.backgroundImage = randomLoadImg;
+  }
+  showLoadingImg();
   const units = "metric";
   const queryString = `?q=${weatherLocation}&appid=${apiKey}&units=${units}`;
   fetch(url + queryString).then(waitForResponse).then(displayCurrentWeather).then(getLocation).catch(error);
@@ -140,12 +153,9 @@ function onFormSubmit(event) {
 form.addEventListener("submit", snapToStart)
 function snapToStart() {
   const fiveDaySection = document.querySelector("#fiveDayForecast");
-  // find width of user window
-  const fullWidth = window.innerWidth;
   // set five day section back to start on form submit
-  fiveDaySection.scrollLeft -=fullWidth*10;
+  fiveDaySection.scrollTo({left: 0, behavior: "smooth"});
 }
-
 // sets a default location
 fetchCurrentWeather();
 // uses user input location
