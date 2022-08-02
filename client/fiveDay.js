@@ -145,7 +145,8 @@ function showFiveDays(data) {
 // added full query selectors into switch as I would get an error message as 7th day would not exist yet when made as a variable.
   switch (dayOfWeek) {
     case ("Su"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -155,7 +156,8 @@ function showFiveDays(data) {
       `
       break;
     case ("Mo"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -165,7 +167,8 @@ function showFiveDays(data) {
       `
       break;
     case ("Tu"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -175,7 +178,8 @@ function showFiveDays(data) {
       `
       break;
     case ("We"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -185,7 +189,8 @@ function showFiveDays(data) {
       `
       break;
     case ("Th"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -195,7 +200,8 @@ function showFiveDays(data) {
       `
       break;
     case ("Fr"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -205,7 +211,8 @@ function showFiveDays(data) {
       `
       break;
     case ("Sa"):
-      htmlTest =
+      // htmlTest =
+      fiveDayButtons.innerHTML =
       `
       <ul id="fiveDayBtnList">
         <li class="filterDays" id="all">All</li>
@@ -217,7 +224,7 @@ function showFiveDays(data) {
     default:
       break;
   }
-  fiveDayButtons.innerHTML += htmlTest
+  // fiveDayButtons.innerHTML = htmlTest
 
 
 // Filter the 5 day forecast by day or All
