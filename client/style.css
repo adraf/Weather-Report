@@ -38,6 +38,10 @@ h1 {
   padding: 40px 0;
 }
 
+#locationName {
+  font-size: 25px;
+}
+
 #mainDashboard {
   padding: 10px;
 }
@@ -119,6 +123,10 @@ input[type="submit"] {
   color: white;
 }
 
+input[value=""] {
+  display: none;
+}
+
 input::placeholder {
   color: rgba(148, 187, 233, 1);
 }
@@ -151,7 +159,7 @@ input::placeholder {
 }
 
 #currentTemp{
-  font-weight: 600;
+  font-weight: 400;
   margin: 0;
 }
 
@@ -243,6 +251,36 @@ input::placeholder {
 
 @media only screen and (max-width: 600px) {
 
+ h1 {
+  font-size: 30px;
+  padding: 15px 0 10px 0; 
+ }
+
+ form {
+  margin: 10px auto;
+  width: 80vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+ }
+
+/*  to do */
+ input[value="Search"] {
+  display: none;
+ }
+
+ input[value=""] {
+  display: block;
+  height: 100%;
+  padding: 25px 30px;
+  background-image: url("./public/searchIcon.png");
+  background-position: center;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-color: rgba(148, 187, 233, 1);
+  color: white;
+ }
+
  #output {
   flex-direction: column;
   font-size: 16px;
@@ -250,18 +288,30 @@ input::placeholder {
   width: 90vw;
  }
 
+ #locationName {
+  font-size: 20px;
+}
+
  #mainDashboard {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
  }
 
  #sunriseImg, #sunsetImg, #maxTempImg, #minTempImg {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+ }
+
+ #currentTempContainer {
+  width: 20vw;
  }
 
 /* center 5 day forecast sections for mobile */
  #fiveDayForecast {
   scroll-padding-left: 0;
+  margin-top: 10px;
  }
 
  .weatherAheadSections {
@@ -275,7 +325,15 @@ input::placeholder {
  }
 
  #fiveDayBtnList li {
-  margin: 12px;
+  margin: 10px 5px;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+ }
+
+ #fiveDayBtnList #all {
+  width: 100%;
+  border-radius: 20px;
  }
 
 }

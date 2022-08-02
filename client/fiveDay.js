@@ -7,21 +7,22 @@ function waitForResponse(res) {
 }
 
 function getLocation() {
-  fiveDayForecastDiv.innerHTML = `<div id="loadingScreen"></div>`;
+  fiveDayForecastDiv.innerHTML = "";
+  // fiveDayForecastDiv.innerHTML = `<div id="loadingScreen"></div>`;
   // generate random loading image
-  const weatherImages = [
-    'url("https://openweathermap.org/img/wn/02d@2x.png")',
-    'url("https://openweathermap.org/img/wn/09d@2x.png")',
-    'url("https://openweathermap.org/img/wn/10d@2x.png")',
-    'url("https://openweathermap.org/img/wn/11d@2x.png")',
-  ];
-  const pic = document.querySelector("#loadingScreen");
-  function showLoadingImg() {
-    const picMath = Math.floor(Math.random() * weatherImages.length);
-    const randomLoadImg = weatherImages[picMath];
-    pic.style.backgroundImage = randomLoadImg;
-  }
-  showLoadingImg();
+  // const weatherImages = [
+  //   'url("https://openweathermap.org/img/wn/02d@2x.png")',
+  //   'url("https://openweathermap.org/img/wn/09d@2x.png")',
+  //   'url("https://openweathermap.org/img/wn/10d@2x.png")',
+  //   'url("https://openweathermap.org/img/wn/11d@2x.png")',
+  // ];
+  // const pic = document.querySelector("#loadingScreen");
+  // function showLoadingImg() {
+  //   const picMath = Math.floor(Math.random() * weatherImages.length);
+  //   const randomLoadImg = weatherImages[picMath];
+  //   pic.style.backgroundImage = randomLoadImg;
+  // }
+  // showLoadingImg();
   // pull location name from id in weather.js
   const locationName = document.querySelector("#locationName").className;
   /// run api to get the lat and long measurements from Geocoding location name
@@ -146,7 +147,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(sundayID)[0].innerText.slice(0, 2)}">${document.querySelectorAll(sundayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -156,7 +157,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(mondayID)[0].innerText.slice(0, 2)}">${document.querySelectorAll(mondayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -166,7 +167,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(tuesdayID)[0].innerText.slice(0, 2)}">${document.querySelectorAll(tuesdayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -176,7 +177,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(wednesdayID)[0].innerText.slice(0, 2)}">${document.querySelectorAll(wednesdayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -186,7 +187,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(thursdayID)[0].innerText.slice(0, 2)}">${document.querySelectorAll(thursdayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -196,7 +197,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(fridayID)[0].innerText.slice(0, 2)}">${document.querySelectorAll(fridayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -206,7 +207,7 @@ function showFiveDays(data) {
       htmlTest =
       `
       <ul id="fiveDayBtnList">
-        <li class="filterDays" id="All">All</li>
+        <li class="filterDays" id="all">All</li>
         <li class="filterDays" id="${document.querySelectorAll(saturdayID)[0].innerText.slice(0, 1)}">${document.querySelectorAll(saturdayID)[0].innerText.slice(0, 1)}</li>
         ${theNextFiveDays}
       </ul>
@@ -224,12 +225,20 @@ function showFiveDays(data) {
     if(dayFilter) {
       onButtonSelect(dayFilter.id);
       function onButtonSelect() {
-        fiveDayForecastDiv.scrollTo({left: 0, behavior: "smooth"});
+        // fiveDayForecastDiv.scrollTo({left: 0, behavior: "smooth"});
         const weatherAheadSections = document.querySelectorAll(".weatherAheadSections");
+        const allBtns = document.querySelectorAll(".filterDays");
         for (let i = 0; i < weatherAheadSections.length; i++) {
           const weatherSectionsID = weatherAheadSections[i].id;
-          if ((weatherSectionsID === (dayFilter).id) || ((dayFilter).id === "All")) {
+          if ((weatherSectionsID === (dayFilter).id) || ((dayFilter).id === "all")) {
             weatherAheadSections[i].style.display = "flex";
+            // re-set all buttons
+            allBtns.forEach(btn => btn.style.backgroundColor = "rgb(49, 85, 126)")
+            allBtns.forEach(btn => btn.style.color = "white")
+            // change active button
+            dayFilter.style.backgroundColor = "rgb(122, 213, 255)";
+            dayFilter.style.color = "rgb(49, 85, 126)"
+            // scroll list back to beginning
             fiveDayForecastDiv.scrollTo({left: 0, behavior: "smooth"});
           } else if (weatherSectionsID !== (dayFilter).id) {
             weatherAheadSections[i].style.display = "none";
