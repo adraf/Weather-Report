@@ -123,9 +123,9 @@ input[type="submit"] {
   color: white;
 }
 
-input[value=""] {
+/* input[value=""] {
   display: none;
-}
+} */
 
 input::placeholder {
   color: rgba(148, 187, 233, 1);
@@ -256,16 +256,15 @@ input::placeholder {
   padding: 15px 0 10px 0; 
  }
 
- form {
+ /* form {
   margin: 10px auto;
   width: 80vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
- }
+ } */
 
-/*  to do */
- input[value="Search"] {
+ /* input[value="Search"] {
   display: none;
  }
 
@@ -279,7 +278,7 @@ input::placeholder {
   background-repeat: no-repeat;
   background-color: rgba(148, 187, 233, 1);
   color: white;
- }
+ } */
 
  #output {
   flex-direction: column;
