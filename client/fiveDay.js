@@ -38,8 +38,7 @@ function locateData(locationData) {
   // use lat and long data to run five day forecast API
   function getFiveDays() {
     const urlFiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`
-    fetch(urlFiveDay).then(waitForResponse).then(showFiveDays)
-    // .catch(error);
+    fetch(urlFiveDay).then(waitForResponse).then(showFiveDays).catch(error);
   }
   getFiveDays();
 }
