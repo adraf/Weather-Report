@@ -87,7 +87,9 @@ fiveDayButtons.innerHTML = "";
 ## Wins
 
 **Random Loading Images** - I have a small selection of weather icons that are randomly selected from to display and spin in the background as a page loading icon. This is something I had wanted to use for a previous project to display randomly selected meteorite images. So I’d like to go back and implement this.
+
 **Five Day Buttons** - Although I have listed this above as having some challenges it was also something that I had planned as future content, so being able to implement it fairly quickly was great. The time has been taken with trying to perfect the smaller issues that have come up with multiple locations and time zones to account for. 
+
 **Scroll Snap** - Made the scrolling of the five day forecast look a bit more slick and user friendly, using “scroll-snap-align: center;” for the mobile CSS to center the results, and for the filter buttons the JavaScript has “.scrollTo({left: 0, behavior: "smooth"})” to bring you back to the beginning when filtering to a new day.
 
 ## Future Content
